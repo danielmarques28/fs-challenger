@@ -1,0 +1,11 @@
+.home {
+  background: white;
+  min-height: 100vh;
+  margin: 80px 5vw;
+  &-title {
+    margin: 40px 0;
+    color: #34363b;
+    font-size: 4rem;
+    font-weight: bolder;
+  }
+}
