@@ -11,10 +11,16 @@ export default function EmojiIcon(props) {
     }
   }
 
+  function setSmallSizeClass() {
+    if(props.small) {
+      return styles['icon-small'];
+    }
+  }
+
   return (
     <div className={styles['emoji-icon-div']}>
       <div
-        className={styles['icon']}
+        className={`${styles['icon']} ${setSmallSizeClass()}`}
         style={{ backgroundColor: props.backgroundColor }}
       >
         {props.icon}
