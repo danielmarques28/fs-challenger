@@ -1,0 +1,42 @@
+.avatar {
+  display: flex;
+  position: relative;
+  width: 290px;
+  height: 290px;
+
+  .background-hover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 260px;
+    padding: 15px;
+    background: rgba(black, 0.5);
+    color: white;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+  
+      &-name {
+        font-weight: bolder;
+        font-size: 2rem;
+      }
+    }
+
+    .menu {
+      display: flex;
+
+    }
+  }
+}
