@@ -23,6 +23,7 @@ InstalledFiles
 pkg/
 spec/reports/
 spec/examples.txt
+storage/
 test/tmp/
 test/version_tmp/
 tmp/
