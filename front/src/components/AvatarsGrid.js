@@ -1,40 +1,50 @@
 import styles from '../styles/scss/components/AvatarsGrid.module.scss';
 import { useState, useEffect } from 'react';
 import Avatar from '../components/Avatar';
+import UserAPI from '../api/user';
 
 export default function AvatarsGrid() {
-  const [person, setPerson] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [interactions, setInteractions] = useState([]);
 
   useEffect(() => {
-    setPerson([
-      {
-        avatar: 'https://s2.glbimg.com/xM4lZI5btPrUiyailc19W2XMYfI=/120x120/top/smart/s2.glbimg.com/tcpZux4ZdyYRuNrlJfz5d8X48n8=/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/S/K/jraPzSRuyCTnR8U3YKJw/babu-santana.png',
-        name: 'Babu Santana'
-      },
-      {
-        avatar: 'https://s2.glbimg.com/xM4lZI5btPrUiyailc19W2XMYfI=/120x120/top/smart/s2.glbimg.com/tcpZux4ZdyYRuNrlJfz5d8X48n8=/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/S/K/jraPzSRuyCTnR8U3YKJw/babu-santana.png',
-        name: 'Babu Santana'
-      },
-      {
-        avatar: 'https://s2.glbimg.com/xM4lZI5btPrUiyailc19W2XMYfI=/120x120/top/smart/s2.glbimg.com/tcpZux4ZdyYRuNrlJfz5d8X48n8=/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/S/K/jraPzSRuyCTnR8U3YKJw/babu-santana.png',
-        name: 'Babu Santana'
-      },
-      {
-        avatar: 'https://s2.glbimg.com/xM4lZI5btPrUiyailc19W2XMYfI=/120x120/top/smart/s2.glbimg.com/tcpZux4ZdyYRuNrlJfz5d8X48n8=/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/S/K/jraPzSRuyCTnR8U3YKJw/babu-santana.png',
-        name: 'Babu Santana'
-      },
-      {
-        avatar: 'https://s2.glbimg.com/xM4lZI5btPrUiyailc19W2XMYfI=/120x120/top/smart/s2.glbimg.com/tcpZux4ZdyYRuNrlJfz5d8X48n8=/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/S/K/jraPzSRuyCTnR8U3YKJw/babu-santana.png',
-        name: 'Babu Santana'
-      },
-    ]);
+    getAllUsers();
+    getAllInteractions();
   }, []);
+
+  function getAllUsers() {
+    UserAPI.index()
+      .then(function (response) {
+        setUsers(response.data);
+      });
+  }
+
+  function getAllInteractions() {
+    UserAPI.getAllInteractions(1)
+    .then(function (response) {
+      setInteractions(response.data);
+    });
+  }
+
+  function getBroochReceive(userId) {
+    let brooch = null;
+    for(let interaction of interactions) {
+      if(interaction.friend_id === userId) {
+        brooch = interaction.brooch;
+      }
+    }
+    return brooch;
+  }
 
   return (
     <div className={styles['avatars-grid']}>
       {
-        person.map((person, index) => (
-          <Avatar key={index} person={person} />
+        users.map((user, index) => (
+          <Avatar
+            key={index}
+            broochReceive={getBroochReceive(user.id)}
+            user={user}
+          />
         ))
       }
     </div>
