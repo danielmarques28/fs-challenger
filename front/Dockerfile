@@ -8,6 +8,8 @@ WORKDIR /code
 
 ADD . /code
 
-RUN apk add yarn
+RUN apk update && apk add yarn && apk cache clean
+
+RUN yarn
 
 CMD ["yarn", "start"]
