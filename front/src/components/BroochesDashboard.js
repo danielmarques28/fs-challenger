@@ -1,8 +1,23 @@
 import styles from '../styles/scss/components/BroochesDashboard.module.scss';
+import { useState, useEffect } from 'react';
 import EmojiIcon from '../components/EmojiIcon';
 import { normalizeDate } from '../helpers';
+import UserAPI from '../api/user';
 
 export default function BroochesDashboard() {
+  const [brooches, setBrooches] = useState(null);
+
+  function getRemainingBrooches() {
+    UserAPI.getRemainingBrooches(1)
+      .then(function (response) {
+        setBrooches(response.data);
+      });
+  }
+
+  useEffect(() => {
+    getRemainingBrooches();
+  }, []);
+
   return (
     <div className={styles['brooches-dashboard']}>
       <div className={styles['header']}>
@@ -15,11 +30,26 @@ export default function BroochesDashboard() {
         </div>
       </div>
 
-      <div className={styles['emoji-list']}>
-        <EmojiIcon icon="👨‍🎓" backgroundColor="#07a9ed" quantity={2} />
-        <EmojiIcon icon="👏" backgroundColor="#fff340" quantity={2} />
-        <EmojiIcon icon="🙏" backgroundColor="#ef0382" quantity={2} />
-      </div>
+      {
+        brooches !== null ?
+          <div className={styles['emoji-list']}>
+            <EmojiIcon
+              icon="👨‍🎓"
+              backgroundColor="#07a9ed"
+              quantity={brooches['I learned']}
+            />
+            <EmojiIcon
+              icon="👏"
+              backgroundColor="#fff340"
+              quantity={brooches['I\'m grateful']}
+            />
+            <EmojiIcon
+              icon="🙏"
+              backgroundColor="#ef0382"
+              quantity={brooches['Was awesome']}
+            />
+          </div> : <div />
+      }
     </div>
   );
 }
