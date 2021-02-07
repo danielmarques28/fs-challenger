@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     # UserBrooches
     get '/user_brooches', to: 'user_brooches#index'
+    post '/user_brooches', to: 'user_brooches#create'
 
     # Brooches
     get '/brooches', to: 'brooches#index'
