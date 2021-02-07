@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Avatar from '../components/Avatar';
 import UserAPI from '../api/user';
 
-export default function AvatarsGrid() {
+export default function AvatarsGrid(props) {
   const [users, setUsers] = useState([]);
   const [interactions, setInteractions] = useState([]);
 
@@ -26,6 +26,11 @@ export default function AvatarsGrid() {
     });
   }
 
+  function handleUpdate() {
+    getAllInteractions();
+    props.handleUpdate();
+  }
+
   function getBroochReceive(userId) {
     let brooch = null;
     for(let interaction of interactions) {
@@ -43,6 +48,7 @@ export default function AvatarsGrid() {
           <Avatar
             key={index}
             broochReceive={getBroochReceive(user.id)}
+            handleUpdate={handleUpdate}
             user={user}
           />
         ))
