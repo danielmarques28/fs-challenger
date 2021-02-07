@@ -114,7 +114,7 @@ export default function Avatar(props) {
       onMouseEnter={() => setShowBackground(true)}
       onMouseLeave={() => setShowBackground(false)}
     >
-      <img src={props.user.avatar} alt="avatar" />
+      <img src={props.user.avatar} alt="avatar" width="290" height="290" />
 
       { chooseBackground() }
     </div>
