@@ -10,12 +10,12 @@ class UserBroochesController < ApplicationController
   # POST /user_brooches
   def create
     @user_brooch = UserBrooch.new(user_brooch_params)
-    @user_brooch.user_id = current_user.id
+    @user_brooch.user_id = @current_user.id
 
     if @user_brooch.save
       render json: @user_brooch, status: :created
     else
-      render json: @user_brooch.errors, status: 400
+      render json: @user_brooch.errors, status: :bad_content
     end
   end
 
