@@ -10,10 +10,13 @@ export default function Avatar(props) {
 
   }, []);
 
-  function giveBrooch(friendId, broochName) {
-    UserBroochAPI.create({friendId, broochName})
-      .then(function (response) {
-        console.log('response.data', response.data);
+  function giveBrooch(friendId, broochId) {
+    const body = {
+      user_id: 1, friend_id: friendId, brooch_id: broochId
+    };
+    UserBroochAPI.create(body)
+      .then(function () {
+        props.handleUpdate();
       })
   }
 
@@ -31,7 +34,7 @@ export default function Avatar(props) {
         </div>
 
         <div className={styles['menu']}>
-          <div onClick={() => giveBrooch(props.user.id, 'I learned')}>
+          <div onClick={() => giveBrooch(props.user.id, 1)}>
             <EmojiIcon
               icon="👨‍🎓"
               backgroundColor="#07a9ed"
@@ -39,7 +42,7 @@ export default function Avatar(props) {
             />
           </div>
 
-          <div onClick={() => giveBrooch(props.user.id, 'I\'m grateful')}>
+          <div onClick={() => giveBrooch(props.user.id, 2)}>
             <EmojiIcon
               icon="👏"
               backgroundColor="#fff340"
@@ -47,7 +50,7 @@ export default function Avatar(props) {
             />
           </div>
 
-          <div onClick={() => giveBrooch(props.user.id, 'Was awesome')}>
+          <div onClick={() => giveBrooch(props.user.id, 3)}>
             <EmojiIcon
               icon="🙏"
               backgroundColor="#ef0382"
