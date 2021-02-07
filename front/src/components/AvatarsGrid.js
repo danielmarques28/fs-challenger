@@ -20,7 +20,7 @@ export default function AvatarsGrid(props) {
   }
 
   function getAllInteractions() {
-    UserAPI.getAllInteractions(1)
+    UserAPI.getAllInteractions()
     .then(function (response) {
       setInteractions(response.data);
     });
