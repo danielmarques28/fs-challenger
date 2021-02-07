@@ -1,5 +1,7 @@
 import styles from '../styles/scss/views/Home.module.scss';
 import { useState, useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import BroochesDashboard from '../components/BroochesDashboard';
 import AvatarsGrid from '../components/AvatarsGrid';
 import UserAPI from '../api/user';
@@ -9,7 +11,11 @@ export default function Home() {
   const [dateTimeNow, setDateTimeNow] = useState('');
 
   useEffect(() => {
-    getRemainingBrooches();
+    UserAPI.getRemainingBrooches()
+      .then(function (response) {
+        setBrooches(response.data);
+        setDateTimeNow(getDateTimeNow());
+      });
   }, []);
 
   function getDateTimeNow() {
@@ -20,7 +26,7 @@ export default function Home() {
   }
 
   function getRemainingBrooches() {
-    UserAPI.getRemainingBrooches(1)
+    UserAPI.getRemainingBrooches()
       .then(function (response) {
         setBrooches(response.data);
         setDateTimeNow(getDateTimeNow());
@@ -32,12 +38,18 @@ export default function Home() {
   }
 
   return (
-    <div className={styles['home']}>
-      <div className={styles['home-title']}>Dê um kudo!</div>
+    <div>
+      <Header />
 
-      <BroochesDashboard brooches={brooches} dateTimeNow={dateTimeNow} />
+      <div className={styles['home']}>
+        <div className={styles['home-title']}>Dê um kudo!</div>
 
-      <AvatarsGrid handleUpdate={handleUpdate} />
+        <BroochesDashboard brooches={brooches} dateTimeNow={dateTimeNow} />
+
+        <AvatarsGrid handleUpdate={handleUpdate} />
+      </div>
+
+      <Footer />
     </div>
   );
 }
