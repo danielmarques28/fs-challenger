@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_162352) do
+ActiveRecord::Schema.define(version: 2021_02_07_005916) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_02_06_162352) do
     t.integer "brooch_id", null: false
     t.index ["brooch_id"], name: "index_user_brooches_on_brooch_id"
     t.index ["friend_id"], name: "index_user_brooches_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_user_brooches_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_user_brooches_on_user_id"
   end
 
