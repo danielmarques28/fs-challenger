@@ -1,18 +1,23 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from 'react-router-dom';
+import history from './history';
 
 // VIEWS
+import Login from './views/Login';
 import Home from './views/Home';
 
 function Routes() {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
-        <Route path="/">
+        <Route exact path="/login" name="login">
+          <Login />
+        </Route>
+        <Route exact path="/" name="home">
           <Home />
         </Route>
       </Switch>
