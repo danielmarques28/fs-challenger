@@ -46,17 +46,17 @@ export default function Login() {
                 onChange={handleChangeEmail}
                 value={email}
                 type="email"
-                placeholder="Enter email"
+                placeholder="email"
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Senha</Form.Label>
               <Form.Control
                 onChange={handleChangePassword}
                 value={password}
                 type="password"
-                placeholder="Enter password"
+                placeholder="senha"
               />
             </Form.Group>
 
