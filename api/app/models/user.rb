@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, email: true
   validates :password, length: { in: 6..20 }
   validates :name, length: { in: 3..30 }
+
   has_one_attached :avatar
   has_many :user_brooches
   has_many :brooches, through: :user_brooches
