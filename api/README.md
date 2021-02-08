@@ -1,24 +1,21 @@
-# README
+# API - Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to run (docker)
 
-Things you may want to cover:
+* Clone the repository
 
-* Ruby version
+* Enter **api** folder in the repository:
 
-* System dependencies
+      $ cd fs-challenger/api
 
-* Configuration
+* Build the project image:
 
-* Database creation
+      $ docker-compose build
 
-* Database initialization
+* Create and run the container of the builded image:
 
-* How to run the test suite
+      $ docker-compose up
 
-* Services (job queues, cache servers, search engines, etc.)
+* Run the migrations and populate the database (open another terminal tab):
 
-* Deployment instructions
-
-* ...
+      & docker-compose exec api rails db:migrate db:seed

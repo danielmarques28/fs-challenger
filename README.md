@@ -1,4 +1,10 @@
+# Tutorial to run project (development)
+
+* To see how to run the API, read the [README.md](https://github.com/danielmarques28/fs-challenger/blob/master/api/README.md) in the **api** folder.
+* To see how to run the Front, read the [README.md](https://github.com/danielmarques28/fs-challenger/blob/master/front/README.md) in the **front** folder.
+
 # Full-stack software engineer - Novatics Challenge
+
 Challenge to work as software engineer at Novatics
 
 ## The Challenge
