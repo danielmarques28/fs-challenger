@@ -1,14 +1,10 @@
 import styles from '../styles/scss/components/Avatar.module.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import EmojiIcon from '../components/EmojiIcon';
 import UserBroochAPI from '../api/userBrooch';
 
 export default function Avatar(props) {
   const [showBackground, setShowBackground] = useState(false);
-
-  useEffect(() => {
-
-  }, []);
 
   function giveBrooch(friendId, broochId) {
     const body = {
@@ -22,7 +18,10 @@ export default function Avatar(props) {
 
   function renderBackgroundWithoutBrooch() {
     return (
-      <div className={styles['background-hover']}>
+      <div
+        className={styles['background-hover']}
+        onClick={() => setShowBackground(!showBackground)}
+      >
         <div className={styles['text']}>
           <div className={styles['text-title']}>
             Dê um kudo para
@@ -78,7 +77,10 @@ export default function Avatar(props) {
 
   function renderBackgroundWithBrooch() {
     return (
-      <div className={styles['background-hover']}>
+      <div
+        className={styles['background-hover']}
+        onClick={() => setShowBackground(!showBackground)}
+      >
         <div className={styles['text']}>
           <div className={styles['text-name']}>
             {props.user.name}
@@ -111,10 +113,17 @@ export default function Avatar(props) {
   return (
     <div
       className={styles['avatar']}
+      onClick={() => setShowBackground(!showBackground)}
       onMouseEnter={() => setShowBackground(true)}
       onMouseLeave={() => setShowBackground(false)}
     >
-      <img src={props.user.avatar} alt="avatar" width="290" height="290" />
+      <img
+        className={styles['image']}
+        src={props.user.avatar}
+        alt="avatar"
+        width="290"
+        height="290"
+      />
 
       { chooseBackground() }
     </div>
