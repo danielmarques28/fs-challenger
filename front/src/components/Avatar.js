@@ -31,31 +31,48 @@ export default function Avatar(props) {
             {props.user.name}
           </div>
         </div>
-
         <div className={styles['menu']}>
-          <div onClick={() => giveBrooch(props.user.id, 1)}>
-            <EmojiIcon
-              icon="👨‍🎓"
-              backgroundColor="#07a9ed"
-              small
-            />
-          </div>
+          {
+            props.brooches['I learned']['amount_remain'] > 0 ?
+            <div onClick={() => giveBrooch(
+              props.user.id,
+              props.brooches['I learned']['id']
+            )}>
+              <EmojiIcon
+                icon="👨‍🎓"
+                backgroundColor="#07a9ed"
+                small
+              />
+            </div> : <div />
+          }
 
-          <div onClick={() => giveBrooch(props.user.id, 2)}>
-            <EmojiIcon
-              icon="👏"
-              backgroundColor="#fff340"
-              small
-            />
-          </div>
+          {
+            props.brooches['Was awesome']['amount_remain'] > 0 ?
+            <div onClick={() => giveBrooch(
+              props.user.id,
+              props.brooches['Was awesome']['id']
+            )}>
+              <EmojiIcon
+                icon="👏"
+                backgroundColor="#fff340"
+                small
+              />
+            </div> : <div />
+          }
 
-          <div onClick={() => giveBrooch(props.user.id, 3)}>
-            <EmojiIcon
-              icon="🙏"
-              backgroundColor="#ef0382"
-              small
-            />
-          </div>
+          {
+            props.brooches['I\'m grateful']['amount_remain'] > 0 ?
+            <div onClick={() => giveBrooch(
+              props.user.id,
+              props.brooches['I\'m grateful']['id']
+            )}>
+              <EmojiIcon
+                icon="🙏"
+                backgroundColor="#ef0382"
+                small
+              />
+            </div> : <div />
+          }
         </div>
       </div>
     );
@@ -85,12 +102,14 @@ export default function Avatar(props) {
           <div className={styles['text-name']}>
             { props.user.name }
           </div>
+        </div>
 
+        <div className={styles['text']}>
           <div className={styles['text-title']}>
             Recebeu
           </div>
 
-          <div className={styles['text-title']}>
+          <div className={styles['text-brooch-name']}>
             "{ props.broochReceive.name }"
           </div>
         </div>
@@ -102,10 +121,20 @@ export default function Avatar(props) {
     );
   }
 
+  function countTotalRemainsBrooches() {
+    const broochesKeys = Object.keys(props.brooches);
+    let count = 0;
+    for(let key of broochesKeys) {
+      count += props.brooches[key]['amount_remain'];
+    }
+    return count;
+  }
+
   function chooseBackground() {
-    if(showBackground && props.broochReceive === null) {
+    const count = countTotalRemainsBrooches();
+    if(showBackground && props.broochReceive === null && count > 0) {
       return renderBackgroundWithoutBrooch();
-    } else if(showBackground) {
+    } else if(props.broochReceive !== null) {
       return renderBackgroundWithBroochChosen();
     }
   }

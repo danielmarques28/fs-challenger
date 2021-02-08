@@ -51,7 +51,10 @@ export default function Home() {
           dateTimeNow={dateTimeNow}
         />
 
-        <AvatarsGrid handleUpdate={handleUpdate} />
+        <AvatarsGrid
+          brooches={brooches}
+          handleUpdate={handleUpdate}
+        />
       </div>
 
       <Footer />

@@ -47,6 +47,7 @@ export default function AvatarsGrid(props) {
         users.map((user, index) => (
           <Avatar
             key={index}
+            brooches={props.brooches}
             broochReceive={getBroochReceive(user.id)}
             handleUpdate={handleUpdate}
             user={user}

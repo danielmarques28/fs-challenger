@@ -21,17 +21,17 @@ export default function BroochesDashboard(props) {
             <EmojiIcon
               icon="👨‍🎓"
               backgroundColor="#07a9ed"
-              quantity={props.brooches['I learned']}
+              quantity={props.brooches['I learned']['amount_remain']}
             />
             <EmojiIcon
               icon="👏"
               backgroundColor="#fff340"
-              quantity={props.brooches['Was awesome']}
+              quantity={props.brooches['Was awesome']['amount_remain']}
             />
             <EmojiIcon
               icon="🙏"
               backgroundColor="#ef0382"
-              quantity={props.brooches['I\'m grateful']}
+              quantity={props.brooches['I\'m grateful']['amount_remain']}
             />
           </div> : <div />
       }
