@@ -13,7 +13,7 @@ export default function Avatar(props) {
     UserBroochAPI.create(body)
       .then(function () {
         props.handleUpdate();
-      })
+      }).catch(function () {});
   }
 
   function renderBackgroundWithoutBrooch() {

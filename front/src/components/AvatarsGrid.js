@@ -16,14 +16,14 @@ export default function AvatarsGrid(props) {
     UserAPI.index()
       .then(function (response) {
         setUsers(response.data);
-      });
+      }).catch(function () {});
   }
 
   function getAllInteractions() {
     UserAPI.getAllInteractions()
     .then(function (response) {
       setInteractions(response.data);
-    });
+    }).catch(function () {});
   }
 
   function handleUpdate() {

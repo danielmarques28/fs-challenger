@@ -22,7 +22,6 @@ http.interceptors.response.use(function (response) {
 }, function (error) {
   if (error.response.status === 401) {
     history.push('/login');
-    return error;
   }
   return Promise.reject(error);
 });
