@@ -1,5 +1,65 @@
-.app {
-  &-header {
-    background: red;
+.app-header {
+  display: flex;
+  height: 50px;
+
+  &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+
+    .logo-image {
+      background-image: url('https://cdn-images-1.medium.com/max/1200/1*TzgyDAUgysuvfJNV-EYRCw.png');
+      background-position-y: center;
+      background-size: cover;
+      width: 70%;
+      height: 50%;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .menu-option {
+      display: flex;
+      margin: 0 10px;
+      font-weight: bolder;
+      color: #34363b;
+      cursor: pointer;
+    }
+
+    &-profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-avatar {
+          width: 35px;
+          height: 35px;
+          margin-right: 10px;
+          border-radius: 50%;
+          border: 1px solid #34363b;
+          overflow: hidden;
+        }
+  
+        &-name {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }

@@ -5,8 +5,13 @@ function login(body) {
   return http.post(url, body);
 }
 
+function showCurrentUser() {
+  const url = `/users/show_current_user`;
+  return http.get(url);
+}
+
 function index() {
-  const url = `/users/all_users_except_current_user`;
+  const url = `/users/index_except_current_user`;
   return http.get(url);
 }
 
@@ -20,6 +25,6 @@ function getAllInteractions() {
   return http.get(url);
 }
 
-const endpoints = { login, index, getRemainingBrooches, getAllInteractions };
+const endpoints = { login, showCurrentUser, index, getRemainingBrooches, getAllInteractions };
 
 export default endpoints;
