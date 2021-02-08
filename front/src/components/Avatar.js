@@ -122,10 +122,13 @@ export default function Avatar(props) {
   }
 
   function countTotalRemainsBrooches() {
-    const broochesKeys = Object.keys(props.brooches);
     let count = 0;
-    for(let key of broochesKeys) {
-      count += props.brooches[key]['amount_remain'];
+    if(props.brooches !== null) {
+      const broochesKeys = Object.keys(props.brooches);
+
+      for(let key of broochesKeys) {
+        count += props.brooches[key]['amount_remain'];
+      }
     }
     return count;
   }
