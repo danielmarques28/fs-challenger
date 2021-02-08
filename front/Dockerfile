@@ -8,7 +8,7 @@ WORKDIR /code
 
 ADD . /code
 
-RUN apk update && apk add yarn && apk cache clean
+RUN apk add yarn
 
 RUN yarn
 
