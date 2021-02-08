@@ -42,11 +42,14 @@ class UsersController < ApplicationController
     brooches = Brooch.all
     hash = {}
     for brooch in brooches do
-      hash[brooch.name] = brooch.max_amount_per_user
+      hash[brooch.name] = {
+        id: brooch.id,
+        amount_remain: brooch.max_amount_per_user
+      }
     end
 
     for user_brooch in @current_user.user_brooches do
-      hash[user_brooch.brooch.name] -= 1
+      hash[user_brooch.brooch.name][:amount_remain] -= 1
     end
 
     render json: hash
