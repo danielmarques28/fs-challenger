@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { token: token }
     else
-      render json: { error: 'Invalid email or password' }
+      render json: { error: 'Invalid email or password' }, status: 400
     end
   end
 
@@ -19,13 +19,13 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: @user.errors, status: :bad_content
+      render json: @user.errors, status: 400
     end
   end
 
   def show_current_user
     user = @current_user.as_json(except: :password_digest)
-    user[:avatar] = url_for(@user.avatar) if @user.avatar.attached?
+    user[:avatar] = url_for(@current_user.avatar) if @current_user.avatar.attached?
     render json: user
   end
 

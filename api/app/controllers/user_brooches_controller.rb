@@ -15,7 +15,7 @@ class UserBroochesController < ApplicationController
     if @user_brooch.save
       render json: @user_brooch, status: :created
     else
-      render json: @user_brooch.errors, status: :bad_content
+      render json: @user_brooch.errors, status: 400
     end
   end
 
