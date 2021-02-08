@@ -15,7 +15,7 @@ export default function Home() {
       .then(function (response) {
         setBrooches(response.data);
         setDateTimeNow(getDateTimeNow());
-      });
+      }).catch(function () {});
   }, []);
 
   function getDateTimeNow() {
@@ -30,7 +30,7 @@ export default function Home() {
       .then(function (response) {
         setBrooches(response.data);
         setDateTimeNow(getDateTimeNow());
-      });
+      }).catch(function () {});
   }
 
   function handleUpdate() {

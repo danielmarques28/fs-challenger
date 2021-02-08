@@ -4,14 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import UserAPI from '../api/user';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  let history = useHistory();
+  const [showRedirect, setShowRedirect] = useState(false);
 
   function handleChangeEmail(event) {
     setEmail(event.target.value);
@@ -27,7 +26,7 @@ export default function Login() {
     UserAPI.login({ email, password })
       .then(function (response) {
         localStorage.token = response.data.token;
-        history.push('/');
+        setShowRedirect(true);
       })
       .catch(function (error) {
         setError(error.response.data.error);
@@ -81,6 +80,12 @@ export default function Login() {
 
         </Card.Body>
       </Card>
+
+      {
+        showRedirect
+        ? <Redirect to="/" />
+        : <div />
+      }
     </div>
   );
 }

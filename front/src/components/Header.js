@@ -1,20 +1,22 @@
 import styles from '../styles/scss/components/Header.module.scss';
 import { useState, useEffect } from 'react';
 import UserAPI from '../api/user';
+import { Redirect } from 'react-router-dom';
 
-function Header(props) {
+function Header() {
   const [user, setUser] = useState(null);
+  const [showRedirect, setShowRedirect] = useState(false);
 
   useEffect(() => {
     UserAPI.showCurrentUser()
       .then(function (response) {
         setUser(response.data);
-      });
+      }).catch(function () {});
   }, []);
 
   function logout() {
     localStorage.removeItem('token');
-    props.history.push('/');
+    setShowRedirect(true);
   }
 
   return (
@@ -67,6 +69,12 @@ function Header(props) {
           </div>
         </div>
       </div>
+
+      {
+        showRedirect
+        ? <Redirect to="/login" />
+        : <div />
+      }
     </header>
   );
 }
