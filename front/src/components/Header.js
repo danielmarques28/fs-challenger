@@ -31,9 +31,9 @@ function Header() {
             Dê um kudo
           </div>
 
-          <div className={styles['menu-option']}>
+          {/* <div className={styles['menu-option']}>
             Timeline
-          </div>
+          </div> */}
 
           <div className={styles['menu-option']}>
             Meus kudos

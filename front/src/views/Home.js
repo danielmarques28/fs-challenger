@@ -42,9 +42,14 @@ export default function Home() {
       <Header />
 
       <div className={styles['home']}>
-        <div className={styles['home-title']}>Dê um kudo!</div>
+        <div className={styles['home-title']}>
+          Dê um kudo!
+        </div>
 
-        <BroochesDashboard brooches={brooches} dateTimeNow={dateTimeNow} />
+        <BroochesDashboard
+          brooches={brooches}
+          dateTimeNow={dateTimeNow}
+        />
 
         <AvatarsGrid handleUpdate={handleUpdate} />
       </div>

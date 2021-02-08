@@ -61,7 +61,7 @@ export default function Avatar(props) {
     );
   }
 
-  function renderBrooch() {
+  function renderBroochChosen() {
     const broochName = props.broochReceive.name;
     switch (broochName) {
       case 'I learned':
@@ -75,7 +75,7 @@ export default function Avatar(props) {
     }
   }
 
-  function renderBackgroundWithBrooch() {
+  function renderBackgroundWithBroochChosen() {
     return (
       <div
         className={styles['background-hover']}
@@ -83,7 +83,7 @@ export default function Avatar(props) {
       >
         <div className={styles['text']}>
           <div className={styles['text-name']}>
-            {props.user.name}
+            { props.user.name }
           </div>
 
           <div className={styles['text-title']}>
@@ -96,7 +96,7 @@ export default function Avatar(props) {
         </div>
 
         <div className={styles['menu']}>
-          { renderBrooch() }
+          { renderBroochChosen() }
         </div>
       </div>
     );
@@ -106,7 +106,7 @@ export default function Avatar(props) {
     if(showBackground && props.broochReceive === null) {
       return renderBackgroundWithoutBrooch();
     } else if(showBackground) {
-      return renderBackgroundWithBrooch();
+      return renderBackgroundWithBroochChosen();
     }
   }
 
