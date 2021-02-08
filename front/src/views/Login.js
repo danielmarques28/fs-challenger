@@ -65,7 +65,7 @@ export default function Login() {
               variant="primary"
               type="submit"
             >
-              Submit
+              Entrar
             </Button>
           </Form>
 
